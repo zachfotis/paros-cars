@@ -3,10 +3,11 @@ function Navbar() {
 
   return (
     <nav>
-      <div className="logo">logo</div>
+      <div className='logo'>logo</div>
       <ul>
-        <li className="">Home</li>
+        <li className=''>Home</li>
         <li>About</li>
+        <li>Contact</li>
         <li>{page}</li>
       </ul>
     </nav>
