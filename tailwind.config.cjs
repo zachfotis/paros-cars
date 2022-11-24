@@ -3,7 +3,14 @@ module.exports = {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
-      colors: {},
+      colors: {
+        darkBlue: '#001E6C',
+        blue: '#035397',
+        orange: '#E8630A',
+        yellow: '#FCD900',
+        white: '#FFFFFF',
+        black: '#000000',
+      },
       screens: {
         mobile: { max: '450px' },
         tablet: { max: '768px' },
