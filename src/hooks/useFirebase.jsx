@@ -10,6 +10,7 @@ const firebaseConfig = {
   appId: import.meta.env.appId,
 };
 
+// A custom hook to initialize firebase and check if it's ready
 function useFirebase() {
   const [isFirebaseInitialized, setIsFirebaseInitialized] = useState(false);
 
