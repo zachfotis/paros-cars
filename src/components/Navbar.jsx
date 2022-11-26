@@ -1,26 +1,35 @@
-function Navbar() {
-  let Links = [
-    { name: 'Home', link: '/' },
-    { name: 'Cars', link: '/' },
-    { name: 'Rent Terms', link: '/' },
-    { name: 'Contact Us', link: '/' },
-  ];
-  return (
-    <div className="shadow-md w-full fixed top-0 left-0">
-      <div className="md:flex items-center justify-between bg-blue py-4 md:px-10 p-7">
-        <div className="font-bold text-2xl cursor-pointer flex items-center font-[Poppins] text-white">Logo</div>
+import { NavLink } from 'react-router-dom';
 
-        <ul className="md:flex md:items-center text-white space-x-20">
-          {Links.map((link) => (
-            <li key={link.name} className="md:ml-11 text-xl cursor-pointer">
-              <a hre={link.link} className="hover:text-yellow">
-                {link.name}
-              </a>
+const Routes = [
+  { name: 'Home', url: '/' },
+  { name: 'Cars', url: '/cars' },
+  { name: 'Rent Terms', url: '/terms' },
+  { name: 'Contact Us', url: '/contact' },
+];
+
+function Navbar() {
+  return (
+    <nav className="shadow-md bg-blue w-full fixed top-0 left-0 z-10">
+      <div className="max-w-[1280px] flex justify-between items-center py-2 mx-auto">
+        <div className="font-bold text-2xl cursor-pointer flex items-center text-white">Logo</div>
+        <ul className="space-x-10 md:flex md:items-center">
+          {Routes.map((route) => (
+            <li key={route.name} className="text-xl cursor-pointer md:ml-11">
+              <NavLink
+                to={route.url}
+                className={({ isActive }) => {
+                  return isActive
+                    ? 'text-white text-base font-[500] hover:text-yellow'
+                    : 'text-white text-base font-[300] hover:text-yellow';
+                }}
+              >
+                {route.name}
+              </NavLink>
             </li>
           ))}
         </ul>
       </div>
-    </div>
+    </nav>
   );
 }
 

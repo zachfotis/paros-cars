@@ -1,13 +1,20 @@
-import useFirebase from './hooks/useFirebase';
+import { FirebaseProvider } from './context/FirebaseContext';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import './App.css';
-import Loader from './components/Loader';
-import Navbar from './components/Navbar';
+import Home from './pages/Home';
+import Admin from './pages/Admin';
 
 function App() {
-  // TODO: move this to a context
-  const { isFirebaseInitialized } = useFirebase();
-
-  return isFirebaseInitialized ? <Navbar /> : <Loader text="Configuring App..." />;
+  return (
+    <FirebaseProvider>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/admin" element={<Admin />} />
+        </Routes>
+      </Router>
+    </FirebaseProvider>
+  );
 }
 
 export default App;
