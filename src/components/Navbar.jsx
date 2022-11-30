@@ -1,10 +1,10 @@
 import { useContext, useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import iconEN from '../assets/icons/english_flag.png';
-import iconGR from '../assets/icons/greek_flag.png';
-import LanguageContext from '../context/LanguageContext';
 import { navText } from '../assets/data/texts';
 import { RxHamburgerMenu as Menu } from 'react-icons/rx';
+import LanguageContext from '../context/LanguageContext';
+import iconEN from '../assets/icons/english_flag.png';
+import iconGR from '../assets/icons/greek_flag.png';
 
 function Navbar() {
   const { language, setLanguage } = useContext(LanguageContext);
@@ -41,7 +41,7 @@ function Navbar() {
             <ul
               className="flex justify-center items-start gap-10 tablet:flex-col tablet:absolute tablet:top-[55px] 
           tablet:left-0 tablet:w-full tablet:bg-blue tablet:space-x-0 tablet:px-4 tablet:py-2 tablet:gap-4
-          tablet:border-t-[2px] tablet:border-sky-900 tablet:shadow-md tablet:rounded-b-md tablet:z-20"
+          tablet:border-t-[1px] tablet:border-sky-900 tablet:shadow-md tablet:rounded-b-md tablet:z-20"
             >
               {Routes.map((route) => (
                 <li key={route.name} className="cursor-pointer flex tablet:w-full tablet:rounded-md overflow-hidden">
