@@ -9,7 +9,9 @@ export default FirebaseContext;
 function FirebaseProvider({ children }) {
   const { isFirebaseInitialized } = useFirebase();
 
-  return <FirebaseContext.Provider>{isFirebaseInitialized ? children : <Loader />}</FirebaseContext.Provider>;
+  return (
+    <FirebaseContext.Provider value={null}>{isFirebaseInitialized ? children : <Loader />}</FirebaseContext.Provider>
+  );
 }
 
 export { FirebaseProvider };

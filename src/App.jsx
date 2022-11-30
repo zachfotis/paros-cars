@@ -4,17 +4,20 @@ import './App.css';
 import Home from './pages/Home';
 import Admin from './pages/Admin';
 import Navbar from './components/Navbar';
+import { LanguageProvider } from './context/LanguageContext';
 
 function App() {
   return (
     <FirebaseProvider>
-      <Router>
-        <Navbar />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/admin" element={<Admin />} />
-        </Routes>
-      </Router>
+      <LanguageProvider>
+        <Router>
+          <Navbar />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/admin" element={<Admin />} />
+          </Routes>
+        </Router>
+      </LanguageProvider>
     </FirebaseProvider>
   );
 }
