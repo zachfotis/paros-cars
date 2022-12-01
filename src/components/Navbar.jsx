@@ -33,7 +33,7 @@ function Navbar() {
   ];
 
   return (
-    <nav className="shadow-md bg-blue w-full fixed top-0 left-0 z-10 px-5 tablet:py-1">
+    <nav className="shadow-md bg-blue w-full fixed top-0 left-0 z-40 px-5 py-1">
       <div className="max-w-[1280px] flex justify-between items-center py-2 mx-auto">
         <div className="font-bold text-2xl cursor-pointer flex items-center text-white">Logo</div>
         <div className="flex justify-start items-center gap-10">
