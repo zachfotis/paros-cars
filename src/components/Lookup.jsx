@@ -26,12 +26,12 @@ function Lookup() {
         <MdCarRental className="text-4xl" />
         <h1 className="text-xl font-[300]">{lookupText[language].title}</h1>
       </div>
-      <div className="w-full flex justify-center items-center gap-5 mobile:flex-col mobile:gap-7">
+      <div className="w-full flex justify-center items-center gap-5 tablet:flex-col tablet:gap-7">
         <DateInput label={lookupText[language].date1} value={pickupDate} setValue={setPickupDate} />
-        <FaLongArrowAltRight className="text-2xl mobile:hidden" />
+        <FaLongArrowAltRight className="text-2xl tablet:hidden" />
         <DateInput label={lookupText[language].date2} value={returnDate} setValue={setReturnDate} />
       </div>
-      <Button variant="contained" color="primary" className="mobile:w-full" onClick={handleClick}>
+      <Button variant="contained" color="primary" className="tablet:w-full" onClick={handleClick}>
         {lookupText[language].button}
       </Button>
     </div>

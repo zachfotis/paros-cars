@@ -9,7 +9,7 @@ function DateInput({ label, value, setValue }) {
     setValue(newValue);
   };
   return (
-    <FormControl className="m-1 w-[250px] mobile:w-[100%]">
+    <FormControl className="m-1 w-[250px] tablet:w-[100%]">
       <LocalizationProvider dateAdapter={AdapterDateFns}>
         <DatePicker
           label={label}
