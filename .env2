@@ -1,0 +1,6 @@
+  VITE_APP_apiKey = "AIzaSyDZ9bbZ-q1O1tixUpoSfYGBr7jMPL0FanQ"
+  VITE_APP_authDomain = "parodise-cars.firebaseapp.com"
+  VITE_APP_projectId = "parodise-cars"
+  VITE_APP_storageBucket = "parodise-cars.appspot.com"
+  VITE_APP_messagingSenderId = "241413095237"
+  VITE_APP_appId = "1:241413095237:web:80160560a6f4c96dafc82c"

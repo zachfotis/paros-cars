@@ -12,7 +12,7 @@ function Navbar() {
   const [isTablet, setIsTablet] = useState(false);
 
   const handleResize = () => {
-    if (window.innerWidth < 768) {
+    if (window.innerWidth <= 768) {
       setIsTablet(true);
     } else {
       setIsTablet(false);
@@ -27,6 +27,7 @@ function Navbar() {
 
   const Routes = [
     { name: navText[language].home, url: '/' },
+    { name: navText[language].rent, url: '/rent' },
     { name: navText[language].cars, url: '/cars' },
     { name: navText[language].rentalTerms, url: '/terms' },
     { name: navText[language].contact, url: '/contact' },

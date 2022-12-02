@@ -7,6 +7,7 @@ import './App.css';
 import Home from './pages/Home';
 import Admin from './pages/Admin';
 import Navbar from './components/Navbar';
+import Rent from './pages/Rent';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
           <Navbar />
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/rent" element={<Rent />} />
             <Route path="/admin" element={<Admin />} />
           </Routes>
         </Router>

@@ -6,9 +6,11 @@ import { Button } from '@mui/material';
 import { useContext, useState } from 'react';
 import { lookupText } from '../assets/data/texts';
 import LanguageContext from '../context/LanguageContext';
+import FirebaseContext from '../context/FirebaseContext';
 
 function Lookup() {
   const { language } = useContext(LanguageContext);
+  const { user } = useContext(FirebaseContext);
   const [pickupDate, setPickupDate] = useState(new Date());
   const [returnDate, setReturnDate] = useState(new Date());
 
@@ -31,7 +33,7 @@ function Lookup() {
         <FaLongArrowAltRight className="text-2xl tablet:hidden" />
         <DateInput label={lookupText[language].date2} value={returnDate} setValue={setReturnDate} />
       </div>
-      <Button variant="contained" color="primary" className="tablet:w-full" onClick={handleClick}>
+      <Button variant="contained" color="primary" className="tablet:w-full" onClick={handleClick} disabled={!user}>
         {lookupText[language].button}
       </Button>
     </div>
