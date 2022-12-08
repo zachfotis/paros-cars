@@ -7,7 +7,7 @@ function Rent() {
   return (
     <AnimatePresence>
       <div className="min-h-screen flex flex-col justify-start items-center">
-        <div className="relative w-full h-[80vh]">
+        <div className="relative w-full h-[80vh] min-h-[650px]">
           <img src={HeroImage} alt="hero" className="h-full w-full object-cover shadow-lg" />
           <SelectDates />
         </div>

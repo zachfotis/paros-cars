@@ -1,6 +1,6 @@
 function text() {
   return (
-    <section className="w-full max-w-[1280px] py-14 px-5 mt-[175px] mx-auto">
+    <section className="w-full max-w-[1280px] py-14 px-5 mt-[150px] mx-auto">
       <div className="w-full flex flex-col justify-start items-start gap-10">
         <h1 className="w-full text-center text-2xl font-[500] text-darkBlue">PAROdise Rent Car</h1>
         <p className="w-full text-lg text-left text-gray-500 tablet:text-justify">

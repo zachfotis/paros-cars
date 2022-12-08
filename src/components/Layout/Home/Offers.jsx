@@ -7,7 +7,7 @@ import { motion } from 'framer-motion';
 
 function Offers() {
   return (
-    <section className="w-full max-w-[1280px] py-14 pb-20 px-5 mx-auto">
+    <section className="w-full max-w-[1280px] py-14 pt-7 pb-20 px-5 mx-auto">
       <div className="w-full flex flex-col justify-start items-start gap-10">
         <h1 className="w-full text-center text-2xl font-[500] text-darkBlue">What We Offer</h1>
         <div className="w-full min-w-[320px] flex justify-center items-center gap-10 flex-wrap">
