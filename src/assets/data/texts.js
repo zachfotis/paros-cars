@@ -1,4 +1,4 @@
-const navText = {
+export const navText = {
   EN: {
     home: 'Home',
     rent: 'Rent',
@@ -15,7 +15,7 @@ const navText = {
   },
 };
 
-const lookupText = {
+export const lookupText = {
   EN: {
     title: 'Rent a Car',
     date1: 'Pick-up Date',
@@ -30,4 +30,13 @@ const lookupText = {
   },
 };
 
-export { navText, lookupText };
+export const selectDates = {
+  EN: {
+    title: 'Select Dates',
+    button: 'Check Availability',
+  },
+  GR: {
+    title: 'Επιλέξτε Ημερομηνίες',
+    button: 'ΕΛΕΓΧΟΣ ΔΙΑΘΕΣΙΜΟΤΗΤΑΣ',
+  },
+};

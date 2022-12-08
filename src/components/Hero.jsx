@@ -3,10 +3,10 @@ import Lookup from './Lookup';
 
 function Hero() {
   return (
-    <>
-      <img src={HeroImage} alt="hero" className="relative h-screen w-auto object-cover brightness-75 contrast-75" />
+    <div className="relative w-full h-[50vh]">
+      <img src={HeroImage} alt="hero" className="h-full w-full object-cover shadow-lg" />
       <Lookup />
-    </>
+    </div>
   );
 }
 export default Hero;

@@ -1,10 +1,16 @@
-import { useEffect, useState } from 'react';
+import { Button } from '@mui/material';
+import { useContext, useEffect, useState } from 'react';
 import { DateRangePicker } from 'react-date-range';
 import 'react-date-range/dist/styles.css'; // main style file
 import 'react-date-range/dist/theme/default.css'; // theme css file
-import OneIcon from '../../assets/icons/one.png';
+import { BsCalendar2Date } from 'react-icons/bs';
+import { selectDates } from '../../assets/data/texts';
+import FirebaseContext from '../../context/FirebaseContext';
+import LanguageContext from '../../context/LanguageContext';
 
 function SelectDates() {
+  const { language } = useContext(LanguageContext);
+  const { user } = useContext(FirebaseContext);
   const [selectionRange, setSelectionRange] = useState([
     {
       startDate: new Date(),
@@ -24,33 +30,26 @@ function SelectDates() {
     deleteNode('rdrDefinedRangesWrapper');
   }, []);
 
-  const disabledDates = [
-    new Date(new Date().setDate(new Date().getDate() + 5)),
-    new Date(new Date().setDate(new Date().getDate() + 6)),
-    new Date(new Date().setDate(new Date().getDate() + 7)),
-    new Date(new Date().setDate(new Date().getDate() + 8)),
-    new Date(new Date().setDate(new Date().getDate() + 9)),
-  ];
-
   const handleSelect = (ranges) => {
     setSelectionRange([ranges.selection]);
   };
 
+  const handleClick = () => {};
+
   return (
-    <div className="relative w-fit min-w-[400px] border border-slate-400 p-7 shadow-sm rounded-lg bg-white flex flex-col justify-start items-center gap-7">
-      <img
-        src={OneIcon}
-        alt="one"
-        className="w-[25px] absolute top-0 right-1/2 transform translate-x-1/2 -translate-y-1/2 rounded-full bg-white"
-      />
-      <h1 className="text-xl">Select Dates</h1>
-      <DateRangePicker
-        ranges={selectionRange}
-        onChange={handleSelect}
-        disabledDates={disabledDates}
-        staticRanges={[]}
-        inputRanges={[]}
-      />
+    <div
+      className="absolute top-[55%] right-[50%] transform translate-x-1/2 -translate-y-1/2 
+      border border-slate-400 p-7 shadow-sm rounded-lg bg-white flex flex-col justify-start
+      items-center gap-7 max-w-full overflow-auto mobile:px-3"
+    >
+      <div className="flex justify-center items-center gap-2">
+        <BsCalendar2Date className="text-2xl" />
+        <h1 className="text-xl">{selectDates[language].title}</h1>
+      </div>
+      <DateRangePicker ranges={selectionRange} onChange={handleSelect} staticRanges={[]} inputRanges={[]} />
+      <Button variant="contained" color="primary" className="w-full" onClick={handleClick} disabled={!user}>
+        {selectDates[language].button}
+      </Button>
     </div>
   );
 }

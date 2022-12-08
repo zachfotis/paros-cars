@@ -2,7 +2,7 @@ import { createContext, useEffect } from 'react';
 import { toast } from 'react-toastify';
 import useLocalStorage from '../hooks/useLocalStorage';
 
-const LanguageContext = createContext();
+const LanguageContext = createContext({});
 
 export default LanguageContext;
 

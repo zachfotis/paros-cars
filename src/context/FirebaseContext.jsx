@@ -4,7 +4,7 @@ import Loader from '../components/Loader';
 import useFirebase from '../hooks/useFirebase';
 import { toast } from 'react-toastify';
 
-const FirebaseContext = createContext(null);
+const FirebaseContext = createContext({});
 
 export default FirebaseContext;
 

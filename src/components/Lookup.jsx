@@ -20,7 +20,7 @@ function Lookup() {
 
   return (
     <div
-      className="lookup absolute z-10 top-[50%] left-[50%] transform -translate-x-1/2 -translate-y-1/2 flex flex-col justify-center items-center gap-8 p-7
+      className="lookup absolute z-10 bottom-[0px] left-[50%] transform -translate-x-1/2 translate-y-1/2 flex flex-col justify-center items-center gap-8 p-7
       shadow-lg tablet:w-[90%]
     "
     >
