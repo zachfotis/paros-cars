@@ -7,6 +7,7 @@ import { BsCalendar2Date } from 'react-icons/bs';
 import { selectDates } from '../../assets/data/texts';
 import FirebaseContext from '../../context/FirebaseContext';
 import LanguageContext from '../../context/LanguageContext';
+import { motion } from 'framer-motion';
 
 function SelectDates() {
   const { language } = useContext(LanguageContext);
@@ -37,7 +38,10 @@ function SelectDates() {
   const handleClick = () => {};
 
   return (
-    <div
+    <motion.div
+      initial={{ opacity: 0, right: '100%' }}
+      animate={{ opacity: 1, right: '50%' }}
+      transition={{ duration: 0.5 }}
       className="absolute top-[55%] right-[50%] transform translate-x-1/2 -translate-y-1/2 
       border border-slate-400 p-7 shadow-sm rounded-lg bg-white flex flex-col justify-start
       items-center gap-7 max-w-full overflow-auto mobile:px-3"
@@ -50,7 +54,7 @@ function SelectDates() {
       <Button variant="contained" color="primary" className="w-full" onClick={handleClick} disabled={!user}>
         {selectDates[language].button}
       </Button>
-    </div>
+    </motion.div>
   );
 }
 export default SelectDates;

@@ -7,6 +7,7 @@ import { useContext, useState } from 'react';
 import { lookupText } from '../../../assets/data/texts';
 import LanguageContext from '../../../context/LanguageContext';
 import FirebaseContext from '../../../context/FirebaseContext';
+import { motion } from 'framer-motion';
 
 function Lookup() {
   const { language } = useContext(LanguageContext);
@@ -19,7 +20,10 @@ function Lookup() {
   };
 
   return (
-    <div
+    <motion.div
+      initial={{ opacity: 0, bottom: '200px' }}
+      animate={{ opacity: 1, bottom: '0px' }}
+      transition={{ duration: 0.5 }}
       className="lookup absolute z-10 bottom-[0px] left-[50%] transform -translate-x-1/2 translate-y-1/2 flex flex-col justify-center items-center gap-8 p-7
       shadow-lg tablet:w-[90%]
     "
@@ -36,7 +40,7 @@ function Lookup() {
       <Button variant="contained" color="primary" className="tablet:w-full" onClick={handleClick} disabled={!user}>
         {lookupText[language].button}
       </Button>
-    </div>
+    </motion.div>
   );
 }
 export default Lookup;
