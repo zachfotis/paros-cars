@@ -6,12 +6,12 @@ function Footer() {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-blue text-white w-full h-auto py-7 px-5 flex flex-col justify-center items-center gap-12">
+    <footer className="bg-blue text-white w-full h-auto py-12 px-5 flex flex-col justify-center items-center gap-14">
       <h1 className="w-full text-center text-3xl flex justify-center items-center gap-2 tablet:flex-col">
         <span className="text-orange">PAROdise</span>
         <span>Rent a Car in Paros</span>
       </h1>
-      <div className="w-full max-w-[1280px] mx-auto flex justify-evenly items-stretch gap-5 flex-wrap tablet:flex-col tablet:gap-10">
+      <div className="w-full max-w-[1280px] mx-auto flex justify-between items-stretch gap-5 flex-wrap laptop:justify-start tablet:flex-col tablet:gap-10">
         <Item data={data.pages} title="Pages" />
         <Item data={data.contact} title="Contact Us" />
         <Item data={data.workingHours} title="Working Hours" />
