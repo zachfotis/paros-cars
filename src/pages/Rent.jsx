@@ -1,9 +1,14 @@
+import { useEffect } from 'react';
 import HeroImage from '../assets/images/hero.webp';
 import ProgressBar from '../components/Rent/ProgressBar';
 import SelectDates from '../components/Rent/SelectDates';
 import { AnimatePresence } from 'framer-motion';
 
 function Rent() {
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <AnimatePresence>
       <div className="min-h-screen flex flex-col justify-start items-center">

@@ -1,4 +1,4 @@
-import HeroImage from '../../../assets/images/hero.webp';
+import HeroImage from '../../assets/images/hero.webp';
 import Lookup from './Lookup';
 import { AnimatePresence } from 'framer-motion';
 
