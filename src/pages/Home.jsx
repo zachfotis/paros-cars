@@ -1,4 +1,4 @@
-import Hero from '../components/Hero';
+import Hero from '../components/Layout/Home/Hero';
 
 function Home() {
   return (

@@ -1,12 +1,12 @@
-import DateInput from './Inputs/DateInput';
+import DateInput from '../../Inputs/DateInput';
 import './Lookup.css';
 import { FaLongArrowAltRight } from 'react-icons/fa';
 import { MdCarRental } from 'react-icons/md';
 import { Button } from '@mui/material';
 import { useContext, useState } from 'react';
-import { lookupText } from '../assets/data/texts';
-import LanguageContext from '../context/LanguageContext';
-import FirebaseContext from '../context/FirebaseContext';
+import { lookupText } from '../../../assets/data/texts';
+import LanguageContext from '../../../context/LanguageContext';
+import FirebaseContext from '../../../context/FirebaseContext';
 
 function Lookup() {
   const { language } = useContext(LanguageContext);

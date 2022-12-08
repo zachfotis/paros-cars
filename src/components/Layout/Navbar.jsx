@@ -1,10 +1,10 @@
 import { useContext, useEffect, useState } from 'react';
 import { NavLink } from 'react-router-dom';
-import { navText } from '../assets/data/texts';
+import { navText } from '../../assets/data/texts';
 import { RxHamburgerMenu as Menu } from 'react-icons/rx';
-import LanguageContext from '../context/LanguageContext';
-import iconEN from '../assets/icons/english_flag.png';
-import iconGR from '../assets/icons/greek_flag.png';
+import LanguageContext from '../../context/LanguageContext';
+import iconEN from '../../assets/icons/english_flag.png';
+import iconGR from '../../assets/icons/greek_flag.png';
 
 function Navbar() {
   const { language, setLanguage } = useContext(LanguageContext);

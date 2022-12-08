@@ -6,8 +6,9 @@ import 'react-toastify/dist/ReactToastify.css';
 import './App.css';
 import Home from './pages/Home';
 import Admin from './pages/Admin';
-import Navbar from './components/Navbar';
+import Navbar from './components/Layout/Navbar';
 import Rent from './pages/Rent';
+import Footer from './components/Layout/Footer';
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
             <Route path="/admin" element={<Admin />} />
           </Routes>
         </Router>
+        <Footer />
         <ToastContainer autoClose={2000} closeOnClick />
       </LanguageProvider>
     </FirebaseProvider>
