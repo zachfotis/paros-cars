@@ -31,7 +31,7 @@ function Rent() {
           <div className="relative w-full h-[80vh] min-h-[650px]">
             <img src={HeroImage} alt="hero" className="h-full w-full object-cover shadow-lg" />
             <SelectDates
-              scrollIntoView={scrollToResults}
+              scrollToResults={scrollToResults}
               initialDates={location.state && location.state?.initialDates ? location.state.initialDates : null}
             />
           </div>

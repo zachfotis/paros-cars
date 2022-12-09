@@ -19,14 +19,14 @@ function Lookup() {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    const initialDates = {
+    const state = {
       initialDates: {
         startDate: pickupDate,
         endDate: returnDate,
       },
     };
 
-    navigate('/rent', { state: initialDates });
+    navigate('/rent', { state });
   };
 
   return (

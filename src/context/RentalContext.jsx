@@ -11,7 +11,6 @@ export default useRentalContext;
 
 const RentalProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(false);
-
   const [selectedDates, setSelectedDates] = useState([
     {
       startDate: 0,
@@ -26,10 +25,12 @@ const RentalProvider = ({ children }) => {
 
   // ON SELECTED DATES CHANGE
   useEffect(() => {
+    // Reset all states
     setHasUserSearched(false);
     setAvailableCars([]);
     // TODO: Reset all other states
 
+    // Calculate total days
     if (selectedDates[0].endDate !== 0 && selectedDates[0].startDate !== 0) {
       const endDay = selectedDates[0].endDate.getDate();
       const startDay = selectedDates[0].startDate.getDate();
@@ -51,8 +52,6 @@ const RentalProvider = ({ children }) => {
       setAvailableCars([]);
       return;
     }
-
-    setIsLoading(true);
 
     const handler = () => {
       const availableCarsTemp = [];
@@ -83,6 +82,8 @@ const RentalProvider = ({ children }) => {
       setIsLoading(false);
     };
 
+    // Simulate API call
+    setIsLoading(true);
     setTimeout(handler, 2000);
   };
 

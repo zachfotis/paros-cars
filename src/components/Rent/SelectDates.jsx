@@ -10,7 +10,7 @@ import 'react-date-range/dist/theme/default.css'; // theme css file
 import { motion } from 'framer-motion';
 import { BsCalendar2Date } from 'react-icons/bs';
 
-function SelectDates({ scrollIntoView, initialDates }) {
+function SelectDates({ scrollToResults, initialDates }) {
   const { setSelectedDates, getAvailableCars, hasUserSearched, totalDays } = useRentalContext();
   const { language } = useContext(LanguageContext);
   const { user } = useContext(FirebaseContext);
@@ -51,7 +51,7 @@ function SelectDates({ scrollIntoView, initialDates }) {
   };
 
   const handleClick = () => {
-    scrollIntoView();
+    scrollToResults();
     getAvailableCars();
   };
 
