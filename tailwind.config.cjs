@@ -12,7 +12,7 @@ module.exports = {
         black: '#000000',
       },
       screens: {
-        mobile: { max: '450px' },
+        mobile: { max: '650px' },
         tablet: { max: '768px' },
         laptop: { max: '1050px' },
         laptopLG: { max: '1200px' },

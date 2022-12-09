@@ -1,21 +1,23 @@
-import { Button } from '@mui/material';
 import { useContext, useEffect, useState } from 'react';
+import { Button } from '@mui/material';
+import useRentalContext from '../../context/RentalContext';
+import FirebaseContext from '../../context/FirebaseContext';
+import LanguageContext from '../../context/LanguageContext';
+import { selectDates } from '../../assets/data/texts';
 import { DateRangePicker } from 'react-date-range';
 import 'react-date-range/dist/styles.css'; // main style file
 import 'react-date-range/dist/theme/default.css'; // theme css file
-import { BsCalendar2Date } from 'react-icons/bs';
-import { selectDates } from '../../assets/data/texts';
-import FirebaseContext from '../../context/FirebaseContext';
-import LanguageContext from '../../context/LanguageContext';
 import { motion } from 'framer-motion';
+import { BsCalendar2Date } from 'react-icons/bs';
 
-function SelectDates() {
+function SelectDates({ scrollIntoView, initialDates }) {
+  const { setSelectedDates, getAvailableCars, hasUserSearched, totalDays } = useRentalContext();
   const { language } = useContext(LanguageContext);
   const { user } = useContext(FirebaseContext);
-  const [selectionRange, setSelectionRange] = useState([
+  const [localSelectedDates, setLocalSelectedDates] = useState([
     {
-      startDate: new Date(),
-      endDate: new Date(),
+      startDate: initialDates && initialDates?.startDate ? initialDates.startDate : new Date(),
+      endDate: initialDates && initialDates?.endDate ? initialDates.endDate : new Date(),
       key: 'selection',
     },
   ]);
@@ -29,13 +31,29 @@ function SelectDates() {
     };
 
     deleteNode('rdrDefinedRangesWrapper');
+
+    // Get the initial dates from location state
+    if (initialDates && initialDates?.startDate && initialDates?.endDate) {
+      setSelectedDates([
+        {
+          startDate: initialDates.startDate,
+          endDate: initialDates.endDate,
+          key: 'selection',
+        },
+      ]);
+    }
   }, []);
 
+  // Set the selected dates in the context
   const handleSelect = (ranges) => {
-    setSelectionRange([ranges.selection]);
+    setLocalSelectedDates([ranges.selection]);
+    setSelectedDates([ranges.selection]);
   };
 
-  const handleClick = () => {};
+  const handleClick = () => {
+    scrollIntoView();
+    getAvailableCars();
+  };
 
   return (
     <motion.div
@@ -50,8 +68,14 @@ function SelectDates() {
         <BsCalendar2Date className="text-2xl" />
         <h1 className="text-xl">{selectDates[language].title}</h1>
       </div>
-      <DateRangePicker ranges={selectionRange} onChange={handleSelect} staticRanges={[]} inputRanges={[]} />
-      <Button variant="contained" color="primary" className="w-full" onClick={handleClick} disabled={!user}>
+      <DateRangePicker ranges={localSelectedDates} onChange={handleSelect} staticRanges={[]} inputRanges={[]} />
+      <Button
+        variant="contained"
+        color="primary"
+        className="w-full"
+        onClick={handleClick}
+        disabled={!user || hasUserSearched || totalDays === 0}
+      >
         {selectDates[language].button}
       </Button>
     </motion.div>

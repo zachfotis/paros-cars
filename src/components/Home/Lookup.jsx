@@ -8,6 +8,7 @@ import { lookupText } from '../../assets/data/texts';
 import LanguageContext from '../../context/LanguageContext';
 import FirebaseContext from '../../context/FirebaseContext';
 import { motion } from 'framer-motion';
+import { useNavigate } from 'react-router-dom';
 
 function Lookup() {
   const { language } = useContext(LanguageContext);
@@ -15,8 +16,17 @@ function Lookup() {
   const [pickupDate, setPickupDate] = useState(new Date());
   const [returnDate, setReturnDate] = useState(new Date());
 
+  const navigate = useNavigate();
+
   const handleClick = () => {
-    // TODO: Add logic to handle click
+    const initialDates = {
+      initialDates: {
+        startDate: pickupDate,
+        endDate: returnDate,
+      },
+    };
+
+    navigate('/rent', { state: initialDates });
   };
 
   return (
