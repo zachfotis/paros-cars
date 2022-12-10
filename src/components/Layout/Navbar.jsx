@@ -30,7 +30,7 @@ function Navbar() {
     { name: navText[language].cars, url: '/cars' },
     { name: navText[language].rentalTerms, url: '/terms' },
     { name: navText[language].contact, url: '/contact' },
-    { name: navText[language].rent, url: '/rent' },
+    { name: navText[language].reservation, url: '/reservation' },
   ];
 
   return (

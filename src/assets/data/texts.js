@@ -1,14 +1,14 @@
 export const navText = {
   EN: {
     home: 'Home',
-    rent: 'Rent',
+    reservation: 'Reservation',
     cars: 'Our Cars',
     rentalTerms: 'Rental Terms',
     contact: 'Contact Us',
   },
   GR: {
     home: 'Αρχική',
-    rent: 'Ενοικίαση',
+    reservation: 'Κράτηση',
     cars: 'Ο Στόλος Μας',
     rentalTerms: 'Όροι Ενοικίασης',
     contact: 'Επικοινωνία',

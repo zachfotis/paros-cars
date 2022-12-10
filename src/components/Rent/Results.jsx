@@ -6,9 +6,9 @@ import Car from './Car';
 function Results() {
   const { isLoading, hasUserSearched, totalDays, availableCars, selectedCar } = useRentalContext();
 
-  const showInitialMessage = !isLoading && !hasUserSearched && availableCars.length === 0;
-  const showAvailableCars = !isLoading && hasUserSearched && availableCars.length > 0;
-  const showNoResults = !isLoading && hasUserSearched && availableCars.length === 0;
+  const showInitialMessage = !isLoading && !hasUserSearched && availableCars.length === 0 && !selectedCar;
+  const showAvailableCars = !isLoading && hasUserSearched && availableCars.length > 0 && !selectedCar;
+  const showNoResults = !isLoading && hasUserSearched && availableCars.length === 0 && !selectedCar;
 
   return (
     <div className="w-full flex flex-col justify-center items-center gap-14 my-10 p-5 tablet:my-5">

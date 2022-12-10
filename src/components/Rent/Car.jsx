@@ -1,3 +1,4 @@
+import useRentalContext from '../../context/RentalContext';
 import { Button } from '@mui/material';
 import CarImage from '../../assets/images/test_car.jpg';
 import PassengersIcon from '../../assets/icons/services/passengers.svg';
@@ -9,6 +10,14 @@ import { TfiDashboard } from 'react-icons/tfi';
 import { motion } from 'framer-motion';
 
 function Car({ car, totalDays = 1 }) {
+  const { setSelectedCar } = useRentalContext();
+  const passengers = car?.passengers > 1 ? `${car.passengers - 1} - ${car.passengers}` : car.passengers;
+  const bags = car?.bags > 1 ? `${car.bags - 1} - ${car.bags}` : car.bags;
+
+  const handleSelect = () => {
+    setSelectedCar(car);
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0, x: '100%' }}
@@ -32,7 +41,7 @@ function Car({ car, totalDays = 1 }) {
         <div className="w-full flex justify-start items-start flex-wrap gap-10 laptop:gap-5 tablet:justify-center">
           <div className="flex justify-center items-center gap-2">
             <img src={PassengersIcon} alt="car door" className="w-[25px]" />
-            <p className="text-sm">{car?.passengers}</p>
+            <p className="text-sm">{passengers}</p>
           </div>
           <div className="flex justify-center items-center gap-2">
             <img src={CarDoorIcon} alt="car door" className="w-[25px]" />
@@ -40,7 +49,7 @@ function Car({ car, totalDays = 1 }) {
           </div>
           <div className="flex justify-center items-center gap-2">
             <img src={BagsIcon} alt="car door" className="w-[25px]" />
-            <p className="text-sm">{car?.bags}</p>
+            <p className="text-sm">{bags}</p>
           </div>
           <div className="flex justify-center items-center gap-2">
             <img src={TransmissionIcon} alt="car door" className="w-[25px]" />
@@ -61,16 +70,16 @@ function Car({ car, totalDays = 1 }) {
       <div className="w-fit flex flex-col justify-center items-center gap-5 py-5 px-10 laptop:px-5 tablet:w-full">
         <div className="flex justify-center items-stretch gap-3">
           <div className="flex flex-col justify-evenly items-center">
-            <p className="text-xl font-[400] text-gray-500">€ {car.price}</p>
+            <p className="text-xl font-[400] text-gray-500">€ {car.price.toFixed(2)}</p>
             <p className="text-xs font-[400] text-gray-500">Daily Rate</p>
           </div>
           <span className="w-[1px] h-[50px] bg-gray-200"></span>
           <div className="flex flex-col justify-evenly items-center">
-            <p className="text-2xl font-[500] text-gray-500">€ {totalDays * Number(car.price)}</p>
+            <p className="text-2xl font-[500] text-gray-500">€ {(totalDays * car.price).toFixed(2)}</p>
             <p className="text-xs font-[400] text-gray-500">Total Amount</p>
           </div>
         </div>
-        <Button variant="contained" color="primary" className="w-full">
+        <Button variant="contained" color="primary" className="w-full" onClick={handleSelect}>
           Select Vehicle
         </Button>
       </div>

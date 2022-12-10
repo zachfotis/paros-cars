@@ -1,4 +1,5 @@
 import { createContext, useContext, useEffect, useState } from 'react';
+import { getFirestore, collection, getDocs, where, orderBy, query } from 'firebase/firestore';
 import { toast } from 'react-toastify';
 
 const RentalContext = createContext({});
@@ -23,11 +24,12 @@ const RentalProvider = ({ children }) => {
   const [availableCars, setAvailableCars] = useState([]);
   const [selectedCar, setSelectedCar] = useState(null);
 
-  // ON SELECTED DATES CHANGE
+  // ==================== ON SELECTED DATES CHANGE -> RESET ALL STATES and CALCULATE TOTAL DAYS ====================
   useEffect(() => {
     // Reset all states
     setHasUserSearched(false);
     setAvailableCars([]);
+    setSelectedCar(null);
     // TODO: Reset all other states
 
     // Calculate total days
@@ -41,11 +43,23 @@ const RentalProvider = ({ children }) => {
     }
   }, [selectedDates]);
 
-  // GET AVAILABLE CARS
+  // ==================== SCROLL TO RESULTS WHEN USER HAS SEARCHED ====================
+  useEffect(() => {
+    if (hasUserSearched) {
+      const parentHeight = document.querySelector('.rent__hero').offsetHeight;
+      const offset = window.pageYOffset;
+      window.scrollBy({
+        top: parentHeight - offset - 50,
+        behavior: 'smooth',
+      });
+    }
+  }, [hasUserSearched]);
+
+  // ==================== GET AVAILABLE CARS ====================
   const getAvailableCars = async () => {
     // Check if user has selected an past date
     const today = new Date();
-    today.setDate(today.getDate() - +1);
+    today.setDate(today.getDate() - 1);
 
     if (selectedDates[0].startDate < today || selectedDates[0].endDate < today) {
       toast.error('Please select a date in the future');
@@ -53,16 +67,28 @@ const RentalProvider = ({ children }) => {
       return;
     }
 
-    const handler = () => {
-      const availableCarsTemp = [];
+    // Get available cars from Firestore
+    setIsLoading(true);
+    setHasUserSearched(true);
 
+    try {
+      const db = getFirestore();
+      const collectionRef = collection(db, 'cars');
+      const querySnap = await getDocs(collectionRef);
+      const cars = querySnap.docs.map((doc) => {
+        return { id: doc.id, ...doc.data() };
+      });
+
+      // Filter out cars that are not available in selected date range
+      const filteredCars = [];
       cars.forEach((car) => {
         const isCarAvailableInSelectedDateRange = car.bookedDates.every((bookedDate) => {
           const isPending = bookedDate.status === 'pending';
-          const selectedStartDate = selectedDates[0].startDate;
-          const selectedEndDate = selectedDates[0].endDate;
-          const bookedStartDate = bookedDate.startDate;
-          const bookedEndDate = bookedDate.endDate;
+          // selected date timestamp at 00:00:00
+          const selectedStartDate = new Date(selectedDates[0].startDate).setHours(0, 0, 0, 0);
+          const selectedEndDate = new Date(selectedDates[0].endDate).setHours(0, 0, 0, 0);
+          const bookedStartDate = new Date(bookedDate.startDate.toDate()).setHours(0, 0, 0, 0);
+          const bookedEndDate = new Date(bookedDate.endDate.toDate()).setHours(0, 0, 0, 0);
           if (isPending) {
             return true;
           } else {
@@ -74,17 +100,17 @@ const RentalProvider = ({ children }) => {
         });
 
         if (isCarAvailableInSelectedDateRange) {
-          availableCarsTemp.push(car);
+          filteredCars.push(car);
         }
       });
-      setHasUserSearched(true);
-      setAvailableCars(availableCarsTemp);
-      setIsLoading(false);
-    };
 
-    // Simulate API call
-    setIsLoading(true);
-    setTimeout(handler, 2000);
+      const sortedCars = filteredCars.sort((a, b) => a.price - b.price);
+      setAvailableCars(sortedCars);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setIsLoading(false);
+    }
   };
 
   return (
@@ -95,7 +121,6 @@ const RentalProvider = ({ children }) => {
         selectedCar,
         setSelectedCar,
         availableCars,
-        setAvailableCars,
         getAvailableCars,
         totalDays,
         hasUserSearched,
@@ -108,64 +133,3 @@ const RentalProvider = ({ children }) => {
 };
 
 export { RentalProvider };
-
-const cars = [
-  {
-    id: 1,
-    name: 'Chevrolet Spark',
-    year: '2019',
-    passengers: '4-5',
-    doors: '5',
-    bags: '1-2',
-    transmission: 'M',
-    airCondition: true,
-    mileage: 'Unlimited',
-    price: '25.00',
-    bookedDates: [
-      {
-        startDate: new Date(2022, 11, 1),
-        endDate: new Date(2022, 11, 3),
-        status: 'booked',
-      },
-      {
-        startDate: new Date(2022, 11, 10),
-        endDate: new Date(2022, 11, 12),
-        status: 'booked',
-      },
-      {
-        startDate: new Date(2022, 11, 16),
-        endDate: new Date(2022, 11, 19),
-        status: 'pending',
-      },
-    ],
-  },
-  {
-    id: 2,
-    name: 'Ford Escort',
-    year: '2005',
-    passengers: '4-5',
-    doors: '5',
-    bags: '1-2',
-    transmission: 'M',
-    airCondition: true,
-    mileage: 'Unlimited',
-    price: '15.00',
-    bookedDates: [
-      {
-        startDate: new Date(2022, 11, 3),
-        endDate: new Date(2022, 11, 6),
-        status: 'booked',
-      },
-      {
-        startDate: new Date(2022, 11, 7),
-        endDate: new Date(2022, 11, 8),
-        status: 'booked',
-      },
-      {
-        startDate: new Date(2022, 11, 18),
-        endDate: new Date(2022, 11, 21),
-        status: 'booked',
-      },
-    ],
-  },
-];

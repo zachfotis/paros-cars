@@ -10,7 +10,7 @@ import 'react-date-range/dist/theme/default.css'; // theme css file
 import { motion } from 'framer-motion';
 import { BsCalendar2Date } from 'react-icons/bs';
 
-function SelectDates({ scrollToResults, initialDates }) {
+function SelectDates({ initialDates }) {
   const { setSelectedDates, getAvailableCars, hasUserSearched, totalDays } = useRentalContext();
   const { language } = useContext(LanguageContext);
   const { user } = useContext(FirebaseContext);
@@ -22,6 +22,8 @@ function SelectDates({ scrollToResults, initialDates }) {
     },
   ]);
 
+  // Remove part of the date picker that we don't need
+  // and set the initial dates if they are passed from the location state
   useEffect(() => {
     const deleteNode = (className) => {
       const node = document.querySelector(`.${className}`);
@@ -44,14 +46,14 @@ function SelectDates({ scrollToResults, initialDates }) {
     }
   }, []);
 
-  // Set the selected dates in the context
+  // Set the selected dates in the context and in the local state
   const handleSelect = (ranges) => {
     setLocalSelectedDates([ranges.selection]);
     setSelectedDates([ranges.selection]);
   };
 
+  // Get the available cars when user clicks on the button
   const handleClick = () => {
-    scrollToResults();
     getAvailableCars();
   };
 
