@@ -1,5 +1,5 @@
 import { createContext, useContext, useEffect, useState } from 'react';
-import { getFirestore, collection, getDocs, where, orderBy, query } from 'firebase/firestore';
+import { getFirestore, collection, getDocs } from 'firebase/firestore';
 import { toast } from 'react-toastify';
 
 const RentalContext = createContext({});

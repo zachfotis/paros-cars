@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect } from 'react';
 import HeroImage from '../assets/images/hero.webp';
 import ProgressBar from '../components/Rent/ProgressBar';
 import SelectDates from '../components/Rent/SelectDates';

@@ -26,7 +26,7 @@ function Lookup() {
       },
     };
 
-    navigate('/rent', { state });
+    navigate('/reservation', { state });
   };
 
   return (
