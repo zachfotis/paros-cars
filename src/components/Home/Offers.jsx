@@ -11,8 +11,8 @@ function Offers() {
   const { language } = useContext(LanguageContext);
 
   return (
-    <section className="w-full max-w-[1280px] mt-[150px] px-5 mx-auto tablet:pb-5">
-      <div className="w-full flex flex-col justify-start items-start gap-14">
+    <section className="w-full max-w-[1280px] mt-[150px] px-5 mx-auto tablet:pb-5 tablet:mt-[70px]">
+      <div className="w-full flex flex-col justify-start items-start gap-14 tablet:gap-5">
         <h1 className="w-full text-center text-4xl font-[500] text-darkBlue">
           {language === 'EN' ? 'What We Offer' : 'Τι σας προσφέρουμε'}
         </h1>
