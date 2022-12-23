@@ -2,7 +2,7 @@ import { useContext, useEffect } from 'react';
 import LanguageContext from '../context/LanguageContext';
 import RentTermsItem from '../components/RentTerms/RentTermsItem';
 import { rentTerms } from '../assets/data/texts';
-import TermsImage from '../assets/images/terms.jpg';
+import TermsImage from '../assets/images/Terms.jpg';
 import PageLayout from '../components/Layout/PageLayout';
 
 function RentTerms() {
