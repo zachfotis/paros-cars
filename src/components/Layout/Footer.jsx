@@ -3,6 +3,7 @@ import SocialIcons from '../SocialIcons';
 import LogoFooter from '../../assets/images/LogoFooter.png';
 import { useContext } from 'react';
 import LanguageContext from '../../context/LanguageContext';
+import Map from '../Home/Map';
 
 function Footer() {
   const { language } = useContext(LanguageContext);
@@ -45,7 +46,7 @@ const data = {
     contact: [
       { field1: 'Phone:', field2: '+30 6947133643', url: 'tel:00306947133643', type: '' },
       { field1: 'e-mail:', field2: 'Parodiserentacar@gmail.com', url: 'mailto:Parodiserentacar@gmail.com', type: '' },
-      { field1: 'Address:', field2: 'Fira, Paros, Greece', url: '#', type: '' },
+      { field1: 'Address:', field2: 'Pyrgaki 844 00, Paros, Greece', url: '#', type: '' },
     ],
     workingHours: [
       { field1: 'Monday:', field2: '09:00 - 22:00', type: '' },
@@ -68,7 +69,7 @@ const data = {
     contact: [
       { field1: 'Τηλέφωνο:', field2: '+30 6947133643', url: 'tel:00306947133643', type: '' },
       { field1: 'e-mail:', field2: 'Parodiserentacar@gmail.com', url: 'mailto:Parodiserentacar@gmail.com', type: '' },
-      { field1: 'Διεύθυνση:', field2: 'Φηρά, Πάρος', url: '#', type: '' },
+      { field1: 'Διεύθυνση:', field2: 'Πυργάκι 844 00, Πάρος', url: '#', type: '' },
     ],
     workingHours: [
       { field1: 'Δευτέρα:', field2: '09:00 - 22:00', type: '' },
