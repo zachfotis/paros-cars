@@ -5,17 +5,18 @@ import { RxHamburgerMenu as Menu } from 'react-icons/rx';
 import LanguageContext from '../../context/LanguageContext';
 import iconEN from '../../assets/icons/english_flag.png';
 import iconGR from '../../assets/icons/greek_flag.png';
+import Logo from '../../assets/images/Logo.png';
 
 function Navbar() {
   const { language, setLanguage } = useContext(LanguageContext);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isTablet, setIsTablet] = useState(false);
+  const [isLaptop, setIsLaptop] = useState(false);
 
   const handleResize = () => {
-    if (window.innerWidth <= 768) {
-      setIsTablet(true);
+    if (window.innerWidth <= 1050) {
+      setIsLaptop(true);
     } else {
-      setIsTablet(false);
+      setIsLaptop(false);
     }
   };
 
@@ -36,22 +37,27 @@ function Navbar() {
   return (
     <nav className="shadow-md bg-blue w-full fixed top-0 left-0 z-40 px-5 py-1">
       <div className="max-w-[1280px] flex justify-between items-center py-2 mx-auto">
-        <div className="font-bold text-2xl cursor-pointer flex items-center text-white">Logo</div>
+        <img src={Logo} alt="logo" className="h-[40px]" />
         <div className="flex justify-start items-center gap-10">
-          {((isTablet && isMenuOpen) || !isTablet) && (
+          {((isLaptop && isMenuOpen) || !isLaptop) && (
             <ul
-              className="flex justify-center items-start gap-10 tablet:flex-col tablet:absolute tablet:top-[55px] 
-          tablet:left-0 tablet:w-full tablet:bg-blue tablet:space-x-0 tablet:px-4 tablet:py-2 tablet:gap-4
-          tablet:border-t-[1px] tablet:border-sky-900 tablet:shadow-md tablet:rounded-b-md tablet:z-20"
+              className="flex justify-center items-start gap-10 laptop:flex-col laptop:absolute laptop:top-[55px] 
+          laptop:left-0 laptop:w-full laptop:bg-blue laptop:space-x-0 laptop:px-4 laptop:py-2 laptop:gap-4
+          laptop:border-t-[1px] laptop:border-sky-900 laptop:shadow-md laptop:rounded-b-md laptop:z-20"
             >
               {Routes.map((route) => (
-                <li key={route.name} className="cursor-pointer flex tablet:w-full tablet:rounded-md overflow-hidden">
+                <li
+                  key={route.name}
+                  className={`cursor-pointer flex laptop:w-full laptop:rounded-md overflow-hidden py-1 ${
+                    (route.name === 'Κράτηση' || route.name === 'Reservation') && 'px-2 border border-1 rounded-lg'
+                  }`}
+                >
                   <NavLink
                     to={route.url}
                     className={({ isActive }) => {
                       return isActive
-                        ? 'text-white text-base font-[500] hover:text-yellow tablet:flex-1 tablet:px-2 tablet:py-1 tablet:hover:bg-orange'
-                        : 'text-white text-base font-[300] hover:text-yellow tablet:flex-1 tablet:px-2 tablet:py-1 tablet:hover:bg-orange';
+                        ? 'text-white text-base font-[500] hover:text-yellow laptop:flex-1 laptop:px-2 laptop:py-1 laptop:hover:bg-orange'
+                        : 'text-white text-base font-[300] hover:text-yellow laptop:flex-1 laptop:px-2 laptop:py-1 laptop:hover:bg-orange';
                     }}
                     onClick={() => setIsMenuOpen(false)}
                   >
@@ -75,7 +81,7 @@ function Navbar() {
               onClick={() => setLanguage('EN')}
             />
             <Menu
-              className="text-3xl text-white cursor-pointer ml-4 hidden tablet:block tablet:hover:text-orange"
+              className="text-3xl text-white cursor-pointer ml-4 hidden laptop:block laptop:hover:text-orange"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
             />
           </div>

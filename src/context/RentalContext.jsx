@@ -1,6 +1,7 @@
 import { createContext, useContext, useEffect, useState } from 'react';
 import { getFirestore, collection, getDocs } from 'firebase/firestore';
 import { toast } from 'react-toastify';
+import LanguageContext from './LanguageContext';
 
 const RentalContext = createContext({});
 
@@ -11,6 +12,7 @@ const useRentalContext = () => {
 export default useRentalContext;
 
 const RentalProvider = ({ children }) => {
+  const { language } = useContext(LanguageContext);
   const [isLoading, setIsLoading] = useState(false);
   const [selectedDates, setSelectedDates] = useState([
     {
@@ -62,7 +64,11 @@ const RentalProvider = ({ children }) => {
     today.setDate(today.getDate() - 1);
 
     if (selectedDates[0].startDate < today || selectedDates[0].endDate < today) {
-      toast.error('Please select a date in the future');
+      if (language === 'EN') {
+        toast.error('Please select a date in the future');
+      } else {
+        toast.error('Παρακαλώ επιλέξτε μια ημερομηνία στο μέλλον');
+      }
       setAvailableCars([]);
       return;
     }

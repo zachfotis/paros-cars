@@ -41,7 +41,6 @@ function FirebaseProvider({ children }) {
         if (newUser.isAnonymous) {
           setIsAnonymousAccount(true);
           setIsNormalAccount(false);
-          toast.info('You are browsing as a guest!');
         } else {
           setIsAnonymousAccount(false);
           setIsNormalAccount(true);

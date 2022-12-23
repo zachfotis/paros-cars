@@ -17,7 +17,7 @@ function Results() {
       {/* Show Initial Message */}
       {showInitialMessage && (
         <div className="w-full max-w-[1280px] flex flex-col justify-center items-center gap-5">
-          <h1 className="text-3xl font-bold text-center">Select a date range to see available cars</h1>
+          <h1 className="text-3xl font-bold text-center">Select a date range to see the available cars</h1>
           <p className="text-center">You can rent a car for as little as 1 day</p>
         </div>
       )}
